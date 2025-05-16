@@ -2,6 +2,7 @@ import { Button, Stack } from "react-bootstrap"
 import { useShoppingCart } from "../contexts/ShoppingCartContext"
 import storeItems from "../data/items.json"
 import { formatCurrency } from "../utilities/formatCurrency"
+import Moeda from "../utilities/Moeda"
 
 type CartItemProps = {
   id: number
@@ -29,10 +30,10 @@ export function CartItem({ id, quantity }: CartItemProps) {
           )}
         </div>
         <div className="text-muted" style={{ fontSize: ".75rem" }}>
-          {formatCurrency(item.price)}
+          {Moeda.formatar(item.price)}
         </div>
       </div>
-      <div> {formatCurrency(item.price * quantity)}</div>
+      <div> {Moeda.formatar(item.price * quantity)}</div>
       <Button
         variant="outline-danger"
         size="sm"
