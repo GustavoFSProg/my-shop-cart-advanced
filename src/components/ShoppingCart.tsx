@@ -9,7 +9,7 @@ type ShoppingCartProps = {
 }
 
 export function ShoppingCart({ isOpen }: ShoppingCartProps) {
-  const { closeCart, cartItems } = useShoppingCart()
+  const { closeCart, cartItems, increaseCartQuantity, getItemQuantity, decreaseCartQuantity } = useShoppingCart()
   return (
     <Offcanvas show={isOpen} onHide={closeCart} placement="end">
       <Offcanvas.Header closeButton>
@@ -18,7 +18,25 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
       <Offcanvas.Body>
         <Stack gap={3}>
           {cartItems.map(item => (
+            <>
             <CartItem key={item.id} {...item} />
+           <button onClick={() => increaseCartQuantity(item.id)}>
+            + Mais
+             
+            </button>
+            <button onClick={() => decreaseCartQuantity(item.id)}>
+            - Menos
+             
+            </button>
+           <p>
+            Quantidade:
+            <span style={{marginLeft: '5px'}}>
+
+
+            {getItemQuantity(item.id)}
+            </span>
+            </p> 
+            </>
           ))}
           <div className="ms-auto fw-bold fs-5">
             Total{" "}
